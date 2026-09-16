@@ -1,0 +1,1092 @@
+/* ==========================================================================
+   LPU TOUCH - Mess Food Scanner & Dashboard Styles
+   Faithfully matched colors, typography, layout, and styling
+   ========================================================================== */
+
+:root {
+  --font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  
+  /* Primary & Palette Colors */
+  --bg-app: #f4f5f7;
+  --bg-dashboard: #ffffff;
+  --bg-card: #fffdf9;
+  --border-card: #fde8d7;
+  --pill-bg: #ffd6b0;
+  --pill-text: #2d2d2d;
+  
+  --badge-grad-start: #ff7452;
+  --badge-grad-end: #ffa865;
+  
+  --edu-border: #ff7970;
+  
+  --dark-header: #282828;
+  --dark-pass-header: #222222;
+  
+  --coupon-grad: linear-gradient(135deg, #fe8271 0%, #ff9f68 45%, #ffcf78 100%);
+  --button-grad: linear-gradient(135deg, #ff715f 0%, #ffa767 100%);
+  
+  --maroon-border: #77111e;
+  --gold-star: #f59e0b;
+  
+  --purple-pass-bg: #7f0047;
+  --green-approved: #5cb838;
+  --green-accepted: #38a559;
+  
+  --bottom-nav-active: #e67e22;
+  --bottom-nav-inactive: #757575;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  -webkit-tap-highlight-color: transparent;
+  font-family: var(--font-family);
+}
+
+body {
+  background-color: #1e1e24;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow-x: hidden;
+  color: #333333;
+}
+
+/* Device Wrapper for realistic mobile frame preview on desktop */
+.device-container {
+  width: 100%;
+  max-width: 440px;
+  height: 100vh;
+  max-height: 920px;
+  background-color: var(--bg-dashboard);
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.4);
+  display: flex;
+  flex-direction: column;
+}
+
+@media (max-width: 500px) {
+  body {
+    background-color: var(--bg-dashboard);
+    align-items: stretch;
+  }
+  .device-container {
+    max-width: 100%;
+    width: 100%;
+    height: 100vh;
+    max-height: 100vh;
+    box-shadow: none;
+    border-radius: 0;
+  }
+}
+
+/* Screen Transitions */
+.view-screen {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  background-color: #ffffff;
+  overflow-y: auto;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateX(20px);
+  transition: opacity 0.28s ease, transform 0.28s ease;
+  z-index: 1;
+}
+
+.view-screen.active {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateX(0);
+  z-index: 10;
+}
+
+/* Scrollbar polish */
+.view-screen::-webkit-scrollbar {
+  width: 4px;
+}
+.view-screen::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.15);
+  border-radius: 4px;
+}
+
+/* ==========================================================================
+   VIEW 1: DASHBOARD
+   ========================================================================== */
+#view-dashboard {
+  background-color: #ffffff;
+}
+
+.dashboard-header {
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 16px;
+  position: sticky;
+  top: 0;
+  background: #ffffff;
+  z-index: 5;
+}
+
+.hamburger-btn {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  cursor: pointer;
+  background: none;
+  border: none;
+  padding: 6px;
+}
+
+.hamburger-bar {
+  width: 22px;
+  height: 3px;
+  border-radius: 3px;
+  background: linear-gradient(90deg, #ff715f, #ffb356);
+}
+
+.dashboard-title {
+  font-size: 17px;
+  font-weight: 600;
+  color: #333333;
+  letter-spacing: 0.2px;
+}
+
+.bell-btn {
+  position: relative;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.bell-icon {
+  width: 22px;
+  height: 22px;
+  stroke: #222222;
+  stroke-width: 1.8;
+  fill: none;
+}
+
+.bell-badge {
+  position: absolute;
+  top: 2px;
+  right: 2px;
+  background: linear-gradient(135deg, #ff7452, #ffa865);
+  color: white;
+  font-size: 10px;
+  font-weight: 700;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 4px rgba(255, 116, 82, 0.3);
+}
+
+/* Add more tiles subheader */
+.dashboard-subbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 18px 4px 18px;
+}
+
+.subbar-title {
+  font-size: 17px;
+  font-weight: 600;
+  color: #222222;
+}
+
+.add-tile-btn {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background-color: #1a1a1a;
+  color: #ffffff;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.add-tile-btn svg {
+  width: 14px;
+  height: 14px;
+  stroke: #ffffff;
+  stroke-width: 2.5;
+}
+
+.subbar-subtitle {
+  padding: 0 18px 14px 18px;
+  font-size: 12.5px;
+  color: #71717a;
+}
+
+/* Tiles Grid */
+.tiles-grid-container {
+  padding: 0 12px 80px 12px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+}
+
+.menu-tile {
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-card);
+  border-radius: 16px;
+  padding: 16px 6px 12px 6px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 124px;
+  position: relative;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.035);
+  cursor: pointer;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.menu-tile:active {
+  transform: scale(0.97);
+}
+
+.menu-tile.highlight-border {
+  border: 2px solid var(--edu-border);
+  box-shadow: 0 0 12px rgba(255, 121, 112, 0.28);
+}
+
+.tile-badge {
+  position: absolute;
+  top: -7px;
+  right: 12px;
+  background: linear-gradient(135deg, var(--badge-grad-start), var(--badge-grad-end));
+  color: #ffffff;
+  font-size: 10.5px;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: 6px;
+  box-shadow: 0 2px 6px rgba(255, 116, 82, 0.35);
+  z-index: 2;
+}
+
+.tile-icon-wrap {
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 2px;
+}
+
+.tile-icon-wrap svg {
+  width: 42px;
+  height: 42px;
+}
+
+.tile-pill {
+  width: 90%;
+  background-color: var(--pill-bg);
+  color: var(--pill-text);
+  font-size: 11.5px;
+  font-weight: 600;
+  text-align: center;
+  padding: 5px 6px;
+  border-radius: 8px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-top: 8px;
+  line-height: 1.2;
+}
+
+.menu-tile.mess-tile .tile-pill {
+  white-space: normal;
+  line-height: 1.1;
+  font-size: 11px;
+}
+
+/* Bottom Navigation Bar */
+.bottom-nav {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 60px;
+  background: #ffffff;
+  border-top: 1px solid #f0f0f0;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  z-index: 20;
+  box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.04);
+}
+
+.nav-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--bottom-nav-inactive);
+  font-size: 10.5px;
+  font-weight: 500;
+  transition: color 0.15s ease;
+  width: 25%;
+}
+
+.nav-item.active {
+  color: var(--bottom-nav-active);
+}
+
+.nav-item svg {
+  width: 22px;
+  height: 22px;
+  stroke: currentColor;
+  stroke-width: 1.8;
+  fill: none;
+}
+
+.nav-item.active svg {
+  stroke: var(--bottom-nav-active);
+}
+
+/* ==========================================================================
+   VIEW 2: MESS COUPON (Student Info & Meal Options)
+   ========================================================================== */
+#view-coupon {
+  background-color: #ffffff;
+}
+
+.coupon-app-bar {
+  height: 52px;
+  background-color: var(--dark-header);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 16px;
+  color: #ffffff;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.app-bar-back-btn {
+  background: none;
+  border: none;
+  color: #ffffff;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px;
+}
+
+.app-bar-back-btn svg {
+  width: 22px;
+  height: 22px;
+  stroke: #ffffff;
+  stroke-width: 2.2;
+}
+
+.coupon-app-bar-title {
+  font-size: 15px;
+  font-weight: 500;
+  color: #ffffff;
+  letter-spacing: 0.2px;
+}
+
+.coupon-app-bar-action {
+  font-size: 13.5px;
+  font-weight: 400;
+  color: #f1f1f1;
+  cursor: pointer;
+}
+
+.coupon-body {
+  padding: 16px 14px 40px 14px;
+}
+
+/* Student Info Card with Gradient */
+.student-gradient-card {
+  background: var(--coupon-grad);
+  border-radius: 16px;
+  padding: 20px 18px 24px 18px;
+  color: #222222;
+  box-shadow: 0 8px 24px rgba(254, 130, 113, 0.25);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.student-photo-wrapper {
+  background: #ffffff;
+  padding: 4px;
+  border-radius: 14px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.12);
+  width: 116px;
+  height: 116px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.student-photo-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+.student-name-id {
+  font-size: 14px;
+  font-weight: 600;
+  color: #1a1a1a;
+  margin-top: 10px;
+  margin-bottom: 16px;
+  text-align: center;
+}
+
+.student-details-list {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  text-align: left;
+}
+
+.detail-item {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.detail-label {
+  font-size: 12.5px;
+  font-weight: 600;
+  color: #1a1a1a;
+}
+
+.detail-value {
+  font-size: 12.5px;
+  font-weight: 400;
+  color: #2b2b2b;
+  line-height: 1.35;
+}
+
+/* Lower Selection Section */
+.meal-selection-container {
+  background: #ffffff;
+  border-radius: 14px;
+  border: 1px solid #f0f0f0;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
+  padding: 26px 16px;
+  margin-top: 18px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.scan-prompt-text {
+  font-size: 15.5px;
+  font-weight: 500;
+  color: #111111;
+  max-width: 270px;
+  line-height: 1.4;
+  margin-bottom: 16px;
+}
+
+.rate-us-btn {
+  border: 1.8px solid var(--maroon-border);
+  background: transparent;
+  border-radius: 999px;
+  padding: 3px 18px;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--maroon-border);
+  letter-spacing: 0.5px;
+  cursor: pointer;
+  margin-bottom: 24px;
+  transition: background 0.15s ease;
+}
+
+.rate-us-btn:hover {
+  background: rgba(119, 17, 30, 0.05);
+}
+
+.star-icon {
+  color: var(--gold-star);
+  font-size: 13px;
+}
+
+.meal-buttons-row {
+  display: flex;
+  gap: 14px;
+  width: 100%;
+  justify-content: center;
+}
+
+.meal-cta-btn {
+  flex: 1;
+  max-width: 150px;
+  height: 48px;
+  background: var(--button-grad);
+  border: none;
+  border-radius: 10px;
+  color: #1a1a1a;
+  font-size: 13.5px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  cursor: pointer;
+  box-shadow: 0 6px 14px rgba(255, 113, 95, 0.35);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.meal-cta-btn:active {
+  transform: scale(0.96);
+  box-shadow: 0 3px 8px rgba(255, 113, 95, 0.3);
+}
+
+.meal-cta-btn svg {
+  width: 16px;
+  height: 16px;
+  stroke: #1a1a1a;
+  stroke-width: 2.5;
+}
+
+/* ==========================================================================
+   VIEW 3: CAMERA QR SCANNER
+   ========================================================================== */
+#view-scanner {
+  background-color: #000000;
+}
+
+.scanner-viewport {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background-size: cover;
+  background-position: center;
+}
+
+.scanner-video-feed {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.scanner-canvas-hidden {
+  display: none;
+}
+
+/* Top floating overlay controls */
+.scanner-top-bar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 16px;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.6) 0%, transparent 100%);
+  z-index: 10;
+  color: #ffffff;
+}
+
+.scanner-back-btn {
+  background: rgba(0, 0, 0, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #ffffff;
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.scanner-title-badge {
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(4px);
+  padding: 4px 14px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 500;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+/* Reticle / Cutout overlay matching Image 2 */
+.scanner-reticle-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  z-index: 5;
+}
+
+.scanner-cutout-box {
+  width: 260px;
+  height: 180px;
+  background: rgba(255, 255, 255, 0.18);
+  border: 1.5px solid rgba(255, 255, 255, 0.85);
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 0 0 9999px rgba(0, 0, 0, 0.38);
+}
+
+/* Animated Red Laser Line */
+.scanner-laser-line {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: #ff2d20;
+  box-shadow: 0 0 10px #ff2d20, 0 0 20px #ff2d20;
+  animation: scanLaser 2.2s ease-in-out infinite alternate;
+}
+
+@keyframes scanLaser {
+  0% {
+    top: 5%;
+  }
+  100% {
+    top: 95%;
+  }
+}
+
+/* Bottom test trigger / instructions */
+.scanner-bottom-controls {
+  position: absolute;
+  bottom: 30px;
+  left: 0;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  z-index: 15;
+}
+
+.instant-scan-btn {
+  background: rgba(255, 255, 255, 0.95);
+  color: #111111;
+  border: none;
+  border-radius: 999px;
+  padding: 12px 26px;
+  font-size: 14px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+  transition: transform 0.15s ease;
+}
+
+.instant-scan-btn:active {
+  transform: scale(0.96);
+}
+
+.scanner-hint {
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 12px;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.8);
+}
+
+/* ==========================================================================
+   VIEW 4: MESS PASS SCREEN
+   ========================================================================== */
+#view-pass {
+  background-color: var(--dark-pass-header);
+}
+
+.pass-top-bar {
+  height: 52px;
+  background-color: var(--dark-pass-header);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  padding: 0 16px;
+  color: #ffffff;
+}
+
+.pass-drag-handle {
+  width: 38px;
+  height: 4px;
+  background: #6e6e73;
+  border-radius: 2px;
+  margin-bottom: 6px;
+}
+
+.pass-header-title {
+  font-size: 14px;
+  font-weight: 500;
+  color: #ffffff;
+}
+
+.pass-close-btn {
+  position: absolute;
+  right: 14px;
+  top: 14px;
+  background: none;
+  border: none;
+  color: #ffffff;
+  cursor: pointer;
+  padding: 4px;
+}
+
+.pass-close-btn svg {
+  width: 18px;
+  height: 18px;
+  stroke: #ffffff;
+  stroke-width: 2.2;
+}
+
+/* White Card Container for Pass */
+.pass-sheet-container {
+  background-color: #ffffff;
+  border-radius: 20px 20px 0 0;
+  flex: 1;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding: 22px 14px 0 14px;
+  overflow-y: auto;
+}
+
+/* Floating Countdown Circle Badge */
+.pass-countdown-badge {
+  position: absolute;
+  top: 36px;
+  right: 14px;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: #8b9196;
+  color: #ffffff;
+  font-size: 13.5px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.3);
+  z-index: 25;
+}
+
+/* Top Two Dual Cards */
+.pass-dual-cards {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+  margin-top: 4px;
+}
+
+.pass-sub-card {
+  background: #ffffff;
+  border: 1px solid #ededed;
+  border-radius: 10px;
+  padding: 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.06);
+}
+
+.pass-card-img-frame {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  border: 1px solid #dfdfdf;
+  border-radius: 3px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #ffffff;
+}
+
+.pass-card-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.pass-qr-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.pass-card-reg {
+  font-size: 12.5px;
+  font-weight: 700;
+  color: #111111;
+  margin-top: 8px;
+}
+
+.pass-card-name {
+  font-size: 12px;
+  font-weight: 500;
+  color: #222222;
+  margin-top: 1px;
+}
+
+.pass-card-meal {
+  font-size: 12.5px;
+  font-weight: 700;
+  color: #111111;
+  margin-top: 8px;
+}
+
+.pass-card-mess {
+  font-size: 12px;
+  font-weight: 500;
+  color: #222222;
+  margin-top: 1px;
+}
+
+/* Pass Program & Mess Details */
+.pass-meta-details {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  margin-top: 18px;
+}
+
+.pass-program-text {
+  font-size: 13px;
+  font-weight: 500;
+  color: #1a1a1a;
+  text-align: center;
+}
+
+.pass-assigned-text {
+  font-size: 13px;
+  font-weight: 500;
+  color: #1a1a1a;
+  text-align: center;
+}
+
+/* Date and Time Row */
+.pass-datetime-row {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  padding: 0 20px;
+  margin-top: 18px;
+  font-size: 13.5px;
+  font-weight: 600;
+  color: #1a1a1a;
+}
+
+/* Meal Approved & Rate Us Section */
+.pass-approval-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  margin-top: 16px;
+}
+
+.meal-approved-text {
+  font-size: 19px;
+  font-weight: 700;
+  color: var(--green-approved);
+  letter-spacing: 0.3px;
+  text-shadow: 0 0 10px rgba(92, 184, 56, 0.25);
+}
+
+.pass-rate-btn {
+  border: 1.8px solid var(--maroon-border);
+  background: transparent;
+  border-radius: 999px;
+  padding: 3px 18px;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 11.5px;
+  font-weight: 700;
+  color: var(--maroon-border);
+  letter-spacing: 0.5px;
+  cursor: pointer;
+}
+
+/* Purple Card & Accepted Banner matching media_1789574489897.jpg */
+.pass-purple-card {
+  background-color: var(--purple-pass-bg);
+  border-radius: 4px;
+  padding: 16px;
+  margin-top: 16px;
+  margin-left: -14px;
+  margin-right: -14px;
+  display: flex;
+  flex-direction: column;
+}
+
+.pass-inner-white-box {
+  background-color: #ffffff;
+  border-radius: 2px;
+  padding: 50px 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.12);
+}
+
+.accepted-pill-badge {
+  border: 3px solid #1a1a1a;
+  border-radius: 999px;
+  padding: 8px 24px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  background-color: #ffffff;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.08);
+}
+
+.accepted-circle-icon {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: var(--green-accepted);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.accepted-circle-icon svg {
+  width: 17px;
+  height: 17px;
+  stroke: #ffffff;
+  stroke-width: 3.2;
+}
+
+.accepted-label {
+  font-size: 22px;
+  font-weight: 800;
+  color: var(--green-accepted);
+  letter-spacing: 1px;
+}
+
+/* Lower Details Card matching media_1789574489897.jpg */
+.pass-student-details-card {
+  background-color: #ffffff;
+  border: 1px solid #ededed;
+  border-radius: 12px;
+  padding: 16px 16px 14px 16px;
+  margin-top: 14px;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.035);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.pass-detail-item {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  text-align: left;
+}
+
+.pass-detail-label {
+  font-size: 12.5px;
+  font-weight: 600;
+  color: #1a1a1a;
+}
+
+.pass-detail-val {
+  font-size: 12.5px;
+  font-weight: 400;
+  color: #2b2b2b;
+  line-height: 1.35;
+}
+
+/* Verification Code Pill matching media_1789574489897.jpg */
+.pass-verification-card {
+  background-color: #ffffff;
+  border: 1.8px solid #222222;
+  border-radius: 12px;
+  padding: 12px 18px;
+  margin-top: 14px;
+  margin-bottom: 28px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+}
+
+.verification-title {
+  font-size: 14px;
+  font-weight: 700;
+  color: #111111;
+  letter-spacing: 0.2px;
+}
+
+.verification-code {
+  font-size: 15.5px;
+  font-weight: 800;
+  color: #111111;
+  letter-spacing: 0.5px;
+}
+
+/* PWA Install Button */
+.pwa-install-btn {
+  background: linear-gradient(135deg, #ff715f, #ffa767);
+  color: #ffffff;
+  border: none;
+  border-radius: 999px;
+  padding: 4px 10px;
+  font-size: 11px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(255, 113, 95, 0.35);
+  transition: transform 0.15s ease;
+}
+
+.pwa-install-btn:active {
+  transform: scale(0.95);
+}
