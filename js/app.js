@@ -8,7 +8,7 @@ const state = {
   currentView: 'dashboard',
   selectedMeal: 'Dinner',
   assignedMess: 'Mess BS-13',
-  countdownSeconds: 23,
+  countdownSeconds: 30,
   countdownInterval: null,
   cameraStream: null,
   isScanning: false,
@@ -253,7 +253,7 @@ function updatePassScreen() {
 
 function startCountdown() {
   stopCountdown();
-  state.countdownSeconds = 30; // 30 second counter
+   // 30 second counter
   const badge = document.getElementById('pass-countdown-number');
   if (badge) badge.textContent = state.countdownSeconds;
 
