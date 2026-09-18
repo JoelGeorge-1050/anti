@@ -1,7 +1,7 @@
 {
   "name": "LPU Touch",
   "short_name": "LPU Touch",
-  "start_url": "./index.html",
+  "start_url": "./",
   "scope": "./",
   "display": "standalone",
   "orientation": "portrait",
